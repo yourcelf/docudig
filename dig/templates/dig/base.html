@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}{% endblock %} -- Document Explorer</title>
+        <link rel="stylesheet" type="text/css" media="all" 
+            href="{{MEDIA_URL}}css/cupertino/jquery-ui-1.8.4.custom.css" />
+        <link rel="stylesheet" type="text/css" media="all" 
+            href="{{MEDIA_URL}}css/style.css" />
+        <script type='text/javascript' src='{{MEDIA_URL}}js/jquery.min.js'></script>
+        <script type='text/javascript' src='{{MEDIA_URL}}js/jquery-ui.custom.min.js'></script>
+        <script type='text/javascript' src='{{MEDIA_URL}}js/jquery.sparkline.min.js'></script>
+        <script type='text/javascript' src='{{MEDIA_URL}}js/script.js'></script>
+        <script type='text/javascript' src='{{MEDIA_URL}}js/acronyms.js'></script>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div class='sidebar'>
+            <div class='logo'>{% include "dig/_logo.html" %}</div>
+            <div class='choices'>{% block sidebar %}{% endblock %}</div>
+        </div>
+        <div class='main'>
+            <div class='constraints'>{% block constraints %}{% endblock %}</div>
+            <div class='results'>{% block body %}{% endblock %}</div>
+        </div>
+    </body>
+</html>

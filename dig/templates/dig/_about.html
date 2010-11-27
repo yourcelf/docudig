@@ -1,0 +1,48 @@
+<h1>About</h1>
+<p>
+DocuDig is a general purpose web application for fast, scalable searching,
+browsing, and serving of structured document data.  It is written with 
+<a href='http://djangoproject.org'>Django</a> and 
+<a href='http://lucene.apache.org/solr/'>Solr</a> on the backend.
+DocuDig began its life as a search application for WikiLeaks war log data, but
+has evolved to support arbitrary structured data.
+</p>
+<h2>Features</h2>
+<p>
+<ul>
+    <li>Faceted browsing, including date and numeric ranges</li>
+    <li>Full text searching</li>
+    <li>Expansion of acronyms</li>
+    <li>Free, Libre, Open Source Software</li>
+</ul>
+</p>
+<p>
+For downloads, installations, and usage, please see the 
+<a href='http://github.com/yourcelf/docudig'>project page at GitHub</a>.
+</p>
+<h2>Use cases</h2>
+<p>
+If your data is <em>uniformly structured</em> (e.g., you could reasonably
+express your data set as a CSV file with a reasonable number of columns), 
+<em>large</em> (thousands to hundreds of thousands of entries), contains
+<em>acronyms</em> that need to be identified and defined, and you need to be
+able to <em>host on your own servers</em>, support <em>high load</em>, to allow
+<em>rich searching and browsing</em>, and to expose an <em>API</em> for other
+developers to access your data, DocuDig might be for you.
+</p>
+<p>
+You should be comfortable with:
+</p>
+<ol>
+    <li>Correcting any inconsistencies in your document's structure, and formatting it into a particular CSV format.</li>
+    <li>Defining your data set's structure in a configuration file.</li>
+    <li>Editing a javascript file to define acronyms.</li>
+    <li>Editing Django templates to customize the appearance of search excerpts and document pages.</li>
+    <li>Deploying a Django application, and running Solr.</li>
+    <li>For high load, deploying a caching server/HTTP accelerator like varnish.</li>
+</ol>
+<p>
+Full instructions are available at the 
+<a href='http://github.com/yourcelf/docudig'>GitHub page</a>.
+</p>
+

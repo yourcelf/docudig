@@ -1,3 +1,5 @@
+# Django settings for docudig project.
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -12,8 +14,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'db.sqlite3',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -46,7 +48,7 @@ USE_L10N = False
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(SETTINGS_ROOT, 'media/')
+MEDIA_ROOT = os.path.join(SETTINGS_ROOT, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -59,7 +61,7 @@ MEDIA_URL = '/media/'
 ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'u_6bcni=w%ll398p*7o24u9=&8_p-4z*sag$o(4s)o)*o9m@rd'
+SECRET_KEY = '1#dp@v!2o^nnhg9=k3(u2c8b8#h__0x&-(a!#0ulg&)4m)1v$('
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -69,7 +71,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'afg.middleware.ExpiresHeader',
+    'dig.middleware.ExpiresHeader',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,13 +79,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'docudig.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(SETTINGS_ROOT, 'templates')
+    os.path.join(SETTINGS_ROOT, "templates"),
 )
 
 INSTALLED_APPS = (
@@ -92,11 +94,32 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'django.contrib.admin',
+    #'django.contrib.admin',
+
+    # 3rd party
     'haystack',
-    'afg',
+
+    # custom
+    'dig',
 )
 
-HAYSTACK_SITECONF = 'search_sites'
+from field_settings import *
+ALL_FIELDS = dict((f['name'], f) for f in FIELDS + META_FIELDS)
+primary_key_fields = filter(lambda f: f['primary_key'], FIELDS)
+if len(primary_key_fields) != 1:
+    raise Exception("One and only one field must be labeled with 'primary_key=True'")
+PRIMARY_KEY_FIELD = primary_key_fields[0] 
+body_fields = filter(lambda f: f['body'], ALL_FIELDS.values())
+if len(body_fields) != 1:
+    raise Exception("One and only one field must be labeled with 'body=True'")
+BODY_FIELD = body_fields[0]
+document_fields = filter(lambda f: f['document'], ALL_FIELDS.values())
+if len(document_fields) != 1:
+    raise Exception("One and only one field must be labeled with 'document=True'")
+DOCUMENT_FIELD = document_fields[0]
+
+HAYSTACK_SITECONF = "search_sites"
 HAYSTACK_SEARCH_ENGINE = 'solr'
-HAYSTACK_SOLR_URL = 'http://127.0.0.1:8983/solr'
+HAYSTACK_SOLR_URL = "http://127.0.0.1:8983/solr"
+
+CACHE_MIDDLEWARE_SECONDS = 10 * 60

@@ -1,0 +1,27 @@
+<span style='float: left; margin-right: 1em;'>
+Searching for: 
+</span>
+{% if not constraints %}
+    Everything
+{% else %}
+    {% for constraint in constraints %}
+        <div class='constraint'>
+            <span class='label'>{{ constraint.display }}: {{ constraint.value }}</span>
+            <a href='{% url dig.search %}{% if constraint.remove_link or cur_sort_qstring %}?{% endif %}{% if constraint.remove_link %}{{ constraint.remove_link }}&{% endif %}{{ cur_sort_qstring }}' 
+               title='Click to remove this constraint'
+               style='float: left;'
+             ><span class='ui-icon ui-icon-circle-close'></span></a>
+        </div>
+    {% endfor %}
+{% endif %}
+<div class='sort'>Sort by:
+    {% for sort_opts in sort_links %}
+        <a href='{% url dig.search %}{% if sort_opts.querystr %}?{{ sort_opts.querystr }}{% endif %}'
+           style='text-decoration: none;'
+          >{% if sort_opts.current %}{% if sort_opts.desc %}&darr;{% else %}&uarr;{% endif %}{% endif %}</a>        
+        <a href='{% url dig.search %}{% if sort_opts.querystr %}?{{ sort_opts.querystr }}{% endif %}'
+          >{{ sort_opts.display }}</a>
+        {% if not forloop.last %} | {% endif %}
+    {% endfor %}
+</div>
+<div style='clear: both;'></div>

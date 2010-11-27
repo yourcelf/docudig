@@ -1,0 +1,16 @@
+{% if page.object_list|length > 0 %}
+<div class='pagination'>
+    {{ page.paginator.count }} results.
+
+    {% if page.has_previous %}
+    <a href='?{% if querystr %}{{ querystr }}&{% endif %}{% if cur_sort_qstring %}{{ cur_sort_qstring }}&{% endif %}p_={{ page.previous_page_number }}' title='previous'>&lArr;</a>
+    {% endif %}
+    <span class='current'>
+        Page {{ page.number }} of {{ page.paginator.num_pages }}
+    </span>
+
+    {% if page.has_next %}
+        <a href='?{% if querystr %}{{ querystr }}&{% endif %}{% if cur_sort_qstring %}{{ cur_sort_qstring }}&{% endif %}p_={{ page.next_page_number }}' title='next'>&rArr;</a>
+    {% endif %}
+</div>
+{% endif %}

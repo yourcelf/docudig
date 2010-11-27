@@ -1,0 +1,15 @@
+    <div style='float: right;' class='toggle-acronyms'>
+        <label for='toggleAcronyms'>Expand acronyms:
+            <input id='toggleAcronyms' type='checkbox' onclick='toggleAcronyms();' />
+        </label>
+        <span class='acronyms-expanded' style='display: none;'>
+            Take care; definitions may be wrong.
+        </span>
+    </div>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            if ($("acronym").length == 0) { 
+                $(".toggle-acronyms").hide(); 
+            }
+        });
+    </script>

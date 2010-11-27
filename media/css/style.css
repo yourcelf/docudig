@@ -270,7 +270,7 @@ acronym, .toggle-acronyms {
 }
 
 /* line 121, ././style.sass */
-.release, .category, .region, .casualties {
+.byline {
   color: #005500;
 }
 
@@ -333,18 +333,26 @@ acronym, .toggle-acronyms {
 .sidebar li {
   list-style-type: none;
 }
-
+/* line 151, ././style.sass */
+.sidebar .facet-sort {
+  font-size: 0.8em;
+}
 /* line 153, ././style.sass */
+.sidebar .facet-sort a, .sidebar .facet-sort a:visited {
+  color: #005500;
+}
+
+/* line 156, ././style.sass */
 .about {
   margin-top: 3em;
 }
 
-/* line 156, ././style.sass */
+/* line 159, ././style.sass */
 h1.entry-title {
   font-size: 1.4em;
 }
 
-/* line 159, ././style.sass */
+/* line 162, ././style.sass */
 .main {
   display: inline;
   float: left;
@@ -356,13 +364,14 @@ h1.entry-title {
   overflow-x: hidden;
 }
 
-/* line 162, ././style.sass */
+/* line 165, ././style.sass */
 .constraints {
   background-color: #eeeeee;
   padding: 1em;
 }
-/* line 165, ././style.sass */
+/* line 168, ././style.sass */
 .constraints .constraint {
+  float: left;
   margin-bottom: 0.1em;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -374,39 +383,36 @@ h1.entry-title {
   padding: 0.2em;
   margin-right: 1em;
 }
-/* line 171, ././style.sass */
+/* line 175, ././style.sass */
+.constraints .constraint span {
+  float: left;
+}
+/* line 177, ././style.sass */
 .constraints .constraint a, .constraints .constraint a:visited {
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -o-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -khtml-border-radius: 15px;
-  border-radius: 15px;
-  text-decoration: none;
   padding: 0.2em;
 }
-/* line 175, ././style.sass */
+/* line 179, ././style.sass */
 .constraints .sort {
   float: right;
 }
-/* line 177, ././style.sass */
+/* line 181, ././style.sass */
 .constraints .sort a.sortdir, .constraints .sort a.sortdir:visited {
   text-decoration: none;
 }
 
-/* line 179, ././style.sass */
+/* line 183, ././style.sass */
 .results, .summary {
   padding: 1em;
 }
 
-/* line 182, ././style.sass */
+/* line 186, ././style.sass */
 .input-prompt {
   position: absolute;
   color: #aaaaaa;
   margin: 0.2em 0 0 0.5em;
 }
 
-/* line 187, ././style.sass */
+/* line 191, ././style.sass */
 .sparkline {
   margin-bottom: -7px;
 }

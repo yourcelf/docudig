@@ -1,0 +1,12 @@
+<div class='title'>
+    <a href='{% url dig.show_document doc.pk %}'>{{ doc.title }}</a>
+    <span class='date'>{{ doc.date }}</span>
+</div>
+<div class='byline'>
+    {{ doc.category }}, 
+    {{ doc.region }}, 
+    {{ doc.total_casualties }} casualties
+</div>
+<div class='excerpt'>
+    <p>{{ excerpt }}</p>
+</div>

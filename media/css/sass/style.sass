@@ -118,7 +118,7 @@ acronym, .toggle-acronyms
 
 .date
   color: #555
-.release, .category, .region, .casualties
+.byline
   color: #050
 
 .summary
@@ -148,7 +148,10 @@ acronym, .toggle-acronyms
     font-weight: bold
   li
     list-style-type: none
-    
+  .facet-sort
+    font-size: 0.8em
+    a, a:visited
+      color: #050
 
 .about
   margin-top: 3em
@@ -163,14 +166,15 @@ h1.entry-title
   background-color: #eee
   padding: 1em
   .constraint
+    float: left
     margin-bottom: 0.1em
     +border-radius(5px)
     background-color: #fa3
     padding: 0.2em
     margin-right: 1em
+    span
+      float: left
     a, a:visited
-      +border-radius(15px)
-      text-decoration: none
       padding: 0.2em
   .sort
     float: right

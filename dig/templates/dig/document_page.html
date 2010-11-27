@@ -1,0 +1,186 @@
+{% extends "dig/base.html" %}
+{% block title %}{{ doc.title }}{% endblock %}
+{% block sidebar %}
+    <form method='get' action='{% url dig.search %}'>
+        <input type='text' name='document_' />
+        <input type='submit' value='Search' />
+    </form>
+    <table class='metadata'>
+        <tr>
+            <th>Type</th>
+            <td><a href='{% url dig.search %}?type={{ doc.type }}'>{{ doc.type }}</a></td>
+        </tr><tr>
+            <th>Category</th>
+            <td><a href='{% url dig.search %}?category={{ doc.category }}'>{{ doc.category }}</a></td>
+        </tr><tr>
+            <th>Tracking number</th>
+            <td>{{ doc.tracking_number }}</td>
+        </tr><tr>
+            <th>Region</th>
+            <td><a href='{% url dig.search %}?region={{ doc.region }}'>{{ doc.region }}</a></td>
+        </tr>
+        {% if doc.reporting_unit %}
+        <tr>
+            <th>Reporting unit</th>
+            <td><a href='{% url dig.search %}?reporting_unit={{ doc.reporting_unit }}'>{{ doc.reporting_unit }}</a></td>
+        </tr>
+        {% endif %}
+        {% if doc.unit_name %}<tr>
+            <th>Unit name</th>
+            <td><a href='{% url dig.search %}?unit_name={{ doc.unit_name }}'>{{ doc.unit_name }}</a></td>
+        </tr>
+        {% endif %}
+        {% if doc.type_of_unit %}<tr>
+            <th>Type of unit</th>
+            <td><a href='{% url dig.search %}?type_of_unit={{ doc.type_of_unit }}'>{{ doc.type_of_unit }}</a></td>
+        </tr>
+        {% endif %}
+        {% if doc.total_casualties %}
+        <tr>
+            <td>Total casualties</td>
+            <td title='{{ doc.casualty_summary }}'>{{ doc.total_casualties }}</td>
+        </tr>
+        {% endif %}
+        {% if doc.friendly_wia %}
+        <tr>
+            <td>Friendly wounded</td>
+            <td>{{ doc.friendly_wia }}</td>
+        </tr>
+        {% endif %}
+        {% if doc.friendly_kia %}
+        <tr>
+            <td>Friendly killed</td>
+            <td>{{ doc.friendly_kia }}</td>
+        </tr>
+        {% endif %}
+        {% if doc.host_nation_wia %}
+        <tr>
+            <td>Host nation wounded</td>
+            <td>{{ doc.host_nation_wia  }}</td>
+        </tr>
+        {% endif %}
+        {% if doc.host_nation_kia %}
+        <tr>
+            <td>Host nation killed</td>
+            <td>{{ doc.host_nation_kia  }}</td>
+        </tr>
+        {% endif %}
+        {% if doc.civilian_wia %}
+        <tr>
+            <td>Civilian wounded</td>
+            <td>{{ doc.civilian_wia }}</td>
+        </tr>
+        {% endif %}
+        {% if doc.civilian_kia %}
+        <tr>
+            <td>Civilian killed</td>
+            <td>{{ doc.civilian_kia }}</td>
+        </tr>
+        {% endif %}
+        {% if doc.enemy_wia %}
+        <tr>
+            <td>Enemy wounded</td>
+            <td>{{ doc.enemy_wia }}</td>
+        {% endif %}
+        {% if doc.enemy_kia %}
+        <tr>
+            <td>Enemy killed</td>
+            <td>{{ doc.enemy_kia }}</td>
+        </tr>
+        {% endif %}
+        {% if doc.enemy_detained %}
+        <tr>
+            <td>Enemy detained</td>
+            <td>{{ doc.enemy_detained   }}</td>
+        </tr>
+        {% endif %}
+        {% if doc.attack_on %}
+        <tr>
+            <th>Attack on</th>
+            <td><a href='{% url dig.search %}?attack_on={{ doc.attack_on }}'>{{ doc.attack_on }}</a></td>
+        </tr>
+        {% endif %}
+        {% if doc.mgrs %}
+        <tr>
+            <th>MGRS</th>
+            <td><a href='{% url dig.search %}?mgrs={{ doc.mgrs }}'>{{ doc.mgrs }}</a></td>
+        </tr>
+        {% endif %}
+        {% if doc.originator_group %}
+        <tr>
+            <th>Originator group</th>
+            <td><a href='{% url dig.search %}?originator_group={{ doc.originator_group }}'>{{ doc.originator_group }}</a></td>
+        </tr>
+        {% endif %}
+        {% if doc.updated_by_group %}
+        <tr>
+            <th>Updated by group</th>
+            <td><a href='{% url dig.search %}?updated_by_group={{ doc.updated_by_group }}'>{{ doc.updated_by_group }}</a></td>
+        </tr>
+        {% endif %}
+        {% if doc.ccir %}
+        <tr>
+            <th>CCIR</th>
+            <td><a href='{% url dig.search %}?ccir={{ doc.ccir }}'>{{ doc.ccir }}</a></td>
+        </tr>
+        {% endif %}
+        {% if doc.sigact %}
+        <tr>
+            <th>Sigact</th>
+            <td><a href='{% url dig.search %}?sigact={{ doc.sigact }}'>{{ doc.sigact }}</a></td>
+        </tr>
+        {% endif %}
+        {% if doc.affiliation %}
+        <tr>
+            <th>Affiliation</th>
+            <td><a href='{% url dig.search %}?affiliation={{ doc.affiliation }}'>{{ doc.affiliation }}</a></td>
+        </tr>
+        {% endif %}
+        {% if doc.dcolor %}
+        <tr>
+            <th>Dcolor</th>
+            <td><a href='{% url dig.search %}?dcolor={{ doc.dcolor }}'>{{ doc.dcolor }}</a></td>
+        </tr>
+        {% endif %}
+        {% if doc.classification %}
+        <tr>
+            <th>Classification</th>
+            <td><a href='{% url dig.search %}?classification={{ doc.classification }}'>{{ doc.classification }}</a></td>
+        </tr>
+        {% endif %}
+    </table>
+    <div id='map' style='width: 100%; height: 300px;'></div>
+    <script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=false'></script>
+    {% if doc.latitude and doc.longitude %}
+        <script type='text/javascript'>
+            $(document).ready(function() {
+                var latlng = new google.maps.LatLng({{ doc.latitude }}, {{ doc.longitude }});
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 8,
+                    center: latlng,
+                    mapTypeId: google.maps.MapTypeId.HYBRID
+                });
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map
+                });
+            });
+        </script>
+    {% endif %}
+
+    
+{% endblock %}
+{% block body %}
+<h1 class='doc-title'>{{ doc.title }}</h1>
+<div style='clear: both;'>
+    {{ doc.date }}
+    {% include "dig/_acronym_toggler.html" %}
+</div>
+<br style='clear: both;'>
+<div class='doc-summary'>{{ doc.summary|linebreaksbr }}</div>
+<script type='text/javascript'>
+    $(".doc-title, .doc-summary").each(function(index, el) {
+        $(this).html(acronyms($(this).html()));
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "dig/base.html" %}
+{% block title %}Search{% endblock %}
+{% block sidebar %}{% include "dig/_facets.html" %}{% endblock %}
+{% block constraints %}
+    {% include "dig/_constraints.html" %}
+{% endblock %}
+{% block body %}
+    {% include "dig/_acronym_toggler.html" %}
+    {% if page.paginator.num_pages > 1 %}
+        {% include "dig/_pagination.html" %}
+    {% endif %}
+    <div style='clear: both;'></div>
+    <hr />
+    {% for doc, excerpt in documents %}
+        <div class='excerpt'>{% include "dig/_document_excerpt.html" %}</div>
+    {% endfor %}
+<div class='foot'>
+{% if page.paginator.num_pages > 1 %}
+    <hr />
+    {% include "dig/_pagination.html" %}
+{% endif %}
+</div>
+<script type='text/javascript'>
+    $(".excerpt .title, .excerpt .excerpt p").each(function(index, el) {
+        $(this).html(acronyms($(this).html()));
+    });
+</script>
+{% endblock %}

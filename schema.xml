@@ -90,7 +90,9 @@
 
     <field name="mgrs_exact" type="string" indexed="true" stored="true" multiValued="false" />
 
-    <field name="text" type="text" indexed="true" stored="true" multiValued="false" />
+    <field name="friendly_wia" type="slong" indexed="true" stored="true" multiValued="false" />
+
+    <field name="friendly_wia_exact" type="slong" indexed="true" stored="true" multiValued="false" />
 
     <field name="affiliation" type="text" indexed="true" stored="true" multiValued="false" />
 
@@ -130,10 +132,6 @@
 
     <field name="dcolor_exact" type="string" indexed="true" stored="true" multiValued="false" />
 
-    <field name="type_" type="text" indexed="true" stored="true" multiValued="false" />
-
-    <field name="type__exact" type="string" indexed="true" stored="true" multiValued="false" />
-
     <field name="civilian_wia" type="slong" indexed="true" stored="true" multiValued="false" />
 
     <field name="civilian_wia_exact" type="slong" indexed="true" stored="true" multiValued="false" />
@@ -144,13 +142,15 @@
 
     <field name="latitude" type="sfloat" indexed="true" stored="true" multiValued="false" />
 
+    <field name="latitude_exact" type="sfloat" indexed="true" stored="true" multiValued="false" />
+
     <field name="host_nation_wia" type="slong" indexed="true" stored="true" multiValued="false" />
 
     <field name="host_nation_wia_exact" type="slong" indexed="true" stored="true" multiValued="false" />
 
-    <field name="friendly_wia" type="slong" indexed="true" stored="true" multiValued="false" />
+    <field name="type" type="text" indexed="true" stored="true" multiValued="false" />
 
-    <field name="friendly_wia_exact" type="slong" indexed="true" stored="true" multiValued="false" />
+    <field name="type_exact" type="string" indexed="true" stored="true" multiValued="false" />
 
     <field name="host_nation_kia" type="slong" indexed="true" stored="true" multiValued="false" />
 
@@ -188,9 +188,13 @@
 
     <field name="longitude" type="sfloat" indexed="true" stored="true" multiValued="false" />
 
+    <field name="longitude_exact" type="sfloat" indexed="true" stored="true" multiValued="false" />
+
     <field name="summary" type="text" indexed="true" stored="true" multiValued="false" />
 
     <field name="tracking_number" type="text" indexed="true" stored="true" multiValued="false" />
+
+    <field name="text" type="text" indexed="true" stored="true" multiValued="false" />
 
     <field name="release" type="text" indexed="true" stored="true" multiValued="false" />
 
