@@ -1,10 +1,18 @@
-DocuDig
+DocuDig_Dat
 +++++++
 
-DocuDig is a Django application for rich faceted browsing and searching of
+<a href="https://github.com/yourcelf/docudig">DocuDig</a> is a Django application for rich faceted browsing and searching of
 structured documents.  It began its life as a search application for the
 WikiLeaks war log releases, but has evolved to a general purpose structured
 document browsing and searching tool.
+
+<a href="https://github.com/maxogden/dat">Dat</a> is a tool for sharing and versioning tabular data.
+This DocuDig_Dat branch adds capability to upload documents to DocuDig using Dat.
+Dat is an alternative to git which better supports:
+
+* real time data (sensors, social media, geolocation)
+* transforming data (tracking updates in several formats)
+* data filtering/subsets
 
 *Features*
 
@@ -254,5 +262,6 @@ restarting Solr, the following management command will rebuild the index::
 License
 -------
 
-Granted to the public domain.  If you need other licensing, please file an
-issue.
+This branch is made available under the GPLv3 license.
+
+Original DocuDig is granted to the public domain.

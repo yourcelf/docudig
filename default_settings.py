@@ -118,8 +118,16 @@ if len(document_fields) != 1:
     raise Exception("One and only one field must be labeled with 'document=True'")
 DOCUMENT_FIELD = document_fields[0]
 
-HAYSTACK_SITECONF = "search_sites"
-HAYSTACK_SEARCH_ENGINE = 'solr'
-HAYSTACK_SOLR_URL = "http://127.0.0.1:8983/solr"
+HAYSTACK_CONNECTIONS = {
+  'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://localhost:8983/solr',
+        'TIMEOUT': 60 * 5,
+        'INCLUDE_SPELLING': True,
+        'BATCH_SIZE': 100,
+        'EXCLUDED_INDEXES': []
+   }
+}
+HAYSTACK_SOLR_URL = "http://localhost:8983/solr"
 
 CACHE_MIDDLEWARE_SECONDS = 10 * 60

@@ -28,7 +28,7 @@
         $(selector).html(facets);
     }
 </script>
-<form method='GET' action='{% url dig.search %}' onsubmit='clean_get(this)'>
+<form method='GET' action='{% url "dig.search" %}' onsubmit='clean_get(this)'>
 {% for constraint in constraints %}
     {% if constraint.type == 'text' %}
         <input type='hidden' value='{{ constraint.value }}' name='{{ constraint.key }}' />
@@ -60,7 +60,7 @@
         {% endif %}
         <ul id='facets_{{ name }}'>
             {% for opt in choice.choices %}
-            <li><a href='{% url dig.search %}?{% if querystr %}{{ querystr }}&{% endif %}{% if cur_sort %}{{ cur_sort_qstring }}&{% endif %}{{ name }}={{ opt.0|urlencode }}'>{{ opt.0 }}</a> ({{ opt.1 }})</li>
+            <li><a href='{% url "dig.search" %}?{% if querystr %}{{ querystr }}&{% endif %}{% if cur_sort %}{{ cur_sort_qstring }}&{% endif %}{{ name }}={{ opt.0|urlencode }}'>{{ opt.0 }}</a> ({{ opt.1 }})</li>
             {% endfor %}
         </ul>
     {% endif %}

@@ -166,7 +166,7 @@ def _parse_facets(qd):
                     'display': field['display_name'],
                 })
         elif field['faceted']:
-            sqs = sqs.raw_params(**{
+            sqs = sqs.raw_search("", **{
                 'f.%s_exact.facet.limit' % field['name']: field['facet_limit']
              })
             if field['type'] == 'date':

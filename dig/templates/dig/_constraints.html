@@ -7,7 +7,7 @@ Searching for:
     {% for constraint in constraints %}
         <div class='constraint'>
             <span class='label'>{{ constraint.display }}: {{ constraint.value }}</span>
-            <a href='{% url dig.search %}{% if constraint.remove_link or cur_sort_qstring %}?{% endif %}{% if constraint.remove_link %}{{ constraint.remove_link }}&{% endif %}{{ cur_sort_qstring }}' 
+            <a href='{% url "dig.search" %}{% if constraint.remove_link or cur_sort_qstring %}?{% endif %}{% if constraint.remove_link %}{{ constraint.remove_link }}&{% endif %}{{ cur_sort_qstring }}' 
                title='Click to remove this constraint'
                style='float: left;'
              ><span class='ui-icon ui-icon-circle-close'></span></a>
