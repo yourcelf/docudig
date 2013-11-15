@@ -5,3 +5,4 @@ data/*
 settings.py
 nohup.out
 pip-log.txt
+*.DS_Store

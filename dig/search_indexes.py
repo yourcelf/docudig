@@ -1,7 +1,6 @@
 from django.conf import settings
 
 from haystack import indexes, fields
-from haystack import site
 
 from dig.models import Document
 
@@ -31,13 +30,11 @@ for name, field in settings.ALL_FIELDS.items():
         raise Exception("Unrecognized search index field type '%s'." % field['type'])
     index_fields[field['name']] = index_field
 
-# Override metaclass to let us specify fields non-declaratively.
+
 class DocumentMetaclass(indexes.DeclarativeMetaclass):
     def __new__(cls, name, bases, attrs):
-        return super(DocumentMetaclass, cls).__new__(cls, name, 
+        return super(DocumentMetaclass, cls).__new__(cls, name,
                 bases, index_fields)
 
 class DocumentIndex(indexes.SearchIndex):
     __metaclass__ = DocumentMetaclass
-
-site.register(Document, DocumentIndex)
